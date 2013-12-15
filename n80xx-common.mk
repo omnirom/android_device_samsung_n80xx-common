@@ -44,6 +44,12 @@ PRODUCT_PACKAGES += \
     GalaxyNoteTabSettings \
     TVOutDummy
 
+# IR packages
+PRODUCT_PACKAGES += \
+    consumerir.n80xx
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.consumerir.xml:system/etc/permissions/android.hardware.consumerir.xml
+
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml
