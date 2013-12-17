@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-ifneq ($(filter i925,$(TARGET_DEVICE)),)
+ifneq ($(filter n8000 n801x,$(TARGET_DEVICE)),)
 
 LOCAL_PATH := $(call my-dir)
 
