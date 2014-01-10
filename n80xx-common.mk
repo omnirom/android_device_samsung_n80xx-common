@@ -27,7 +27,8 @@ TARGET_SCREEN_WIDTH := 1280
 PRODUCT_COPY_FILES += \
     device/samsung/n80xx-common/ueventd.smdk4x12.rc:root/ueventd.smdk4x12.rc \
     device/samsung/n80xx-common/ueventd.smdk4x12.rc:recovery/root/ueventd.smdk4x12.rc \
-    device/samsung/n80xx-common/fstab.smdk4x12:root/fstab.smdk4x12
+    device/samsung/n80xx-common/fstab.smdk4x12:root/fstab.smdk4x12 \
+    device/samsung/n80xx-common/recovery/init.recovery.smdk4x12.rc:root/init.recovery.smdk4x12.rc
 
 # Recovery
 TARGET_RECOVERY_FSTAB := device/samsung/n80xx-common/fstab.smdk4x12
