@@ -434,9 +434,7 @@ static void set_incall_device(struct m0_audio_device *adev)
     int device_type;
 
     switch(adev->out_device) {
-        case AUDIO_DEVICE_OUT_EARPIECE:
-            device_type = SOUND_AUDIO_PATH_HANDSET;
-            break;
+       
         case AUDIO_DEVICE_OUT_SPEAKER:
         case AUDIO_DEVICE_OUT_AUX_DIGITAL:
         case AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET:
@@ -515,11 +513,13 @@ static void select_mode(struct m0_audio_device *adev)
             a call. This works because we're sure that the audio policy
             manager will update the output device after the audio mode
             change, even if the device selection did not change. */
-            if (adev->out_device == AUDIO_DEVICE_OUT_SPEAKER) {
-                adev->out_device = AUDIO_DEVICE_OUT_EARPIECE;
+
+	    if (adev->out_device == AUDIO_DEVICE_OUT_SPEAKER) {
+	      //  adev->out_device = AUDIO_DEVICE_OUT_EARPIECE; //tablets don't have earpiece
                 adev->in_device = AUDIO_DEVICE_IN_BUILTIN_MIC & ~AUDIO_DEVICE_BIT_IN;
             } else
                 adev->out_device &= ~AUDIO_DEVICE_OUT_SPEAKER;
+
             select_output_device(adev);
             start_call(adev);
             ril_set_call_clock_sync(&adev->ril, SOUND_CLOCK_START);
@@ -544,7 +544,6 @@ static void select_output_device(struct m0_audio_device *adev)
     int headset_on;
     int headphone_on;
     int speaker_on;
-    int earpiece_on;
     int bt_on;
     bool tty_volume = false;
     unsigned int channel;
@@ -552,7 +551,6 @@ static void select_output_device(struct m0_audio_device *adev)
     headset_on = adev->out_device & AUDIO_DEVICE_OUT_WIRED_HEADSET;
     headphone_on = adev->out_device & AUDIO_DEVICE_OUT_WIRED_HEADPHONE;
     speaker_on = adev->out_device & AUDIO_DEVICE_OUT_SPEAKER;
-    earpiece_on = adev->out_device & AUDIO_DEVICE_OUT_EARPIECE;
     bt_on = adev->out_device & AUDIO_DEVICE_OUT_ALL_SCO;
 
     switch(adev->out_device) {
@@ -564,9 +562,6 @@ static void select_output_device(struct m0_audio_device *adev)
             break;
         case AUDIO_DEVICE_OUT_WIRED_HEADPHONE:
             ALOGD("%s: AUDIO_DEVICE_OUT_WIRED_HEADPHONE", __func__);
-            break;
-        case AUDIO_DEVICE_OUT_EARPIECE:
-            ALOGD("%s: AUDIO_DEVICE_OUT_EARPIECE", __func__);
             break;
         case AUDIO_DEVICE_OUT_ANLG_DOCK_HEADSET:
             ALOGD("%s: AUDIO_DEVICE_OUT_ANLG_DOCK_HEADSET", __func__);
@@ -595,15 +590,13 @@ static void select_output_device(struct m0_audio_device *adev)
                     /* tx path from headset mic */
                     headphone_on = 0;
                     headset_on = 1;
-                    speaker_on = 0;
-                    earpiece_on = 0;
+                    speaker_on = 0; 
                     break;
                 case TTY_MODE_VCO:
                     /* tx path from device sub mic */
                     headphone_on = 0;
                     headset_on = 0;
                     speaker_on = 1;
-                    earpiece_on = 0;
                     break;
                 case TTY_MODE_OFF:
                 default:
@@ -611,7 +604,7 @@ static void select_output_device(struct m0_audio_device *adev)
             }
         }
 
-        if (headset_on || headphone_on || speaker_on || earpiece_on) {
+        if (headset_on || headphone_on || speaker_on) {
             ALOGD("%s: set voicecall route: voicecall_default", __func__);
             set_bigroute_by_array(adev->mixer, voicecall_default, 1);
         } else {
@@ -619,7 +612,7 @@ static void select_output_device(struct m0_audio_device *adev)
             set_bigroute_by_array(adev->mixer, voicecall_default_disable, 1);
         }
 
-        if (speaker_on || earpiece_on || headphone_on) {
+        if (speaker_on || headphone_on) {
             ALOGD("%s: set voicecall route: default_input", __func__);
             set_bigroute_by_array(adev->mixer, default_input, 1);
         } else {
@@ -2727,7 +2720,6 @@ static const struct {
 } dev_names[] = {
     { AUDIO_DEVICE_OUT_SPEAKER, "speaker" },
     { AUDIO_DEVICE_OUT_WIRED_HEADSET | AUDIO_DEVICE_OUT_WIRED_HEADPHONE, "headphone" },
-    { AUDIO_DEVICE_OUT_EARPIECE, "earpiece" },
     { AUDIO_DEVICE_OUT_ANLG_DOCK_HEADSET, "analog-dock" },
     { AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET, "digital-dock" },
     { AUDIO_DEVICE_OUT_ALL_SCO, "sco-out" },
