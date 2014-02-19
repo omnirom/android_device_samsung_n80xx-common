@@ -2880,14 +2880,12 @@ static int adev_config_parse(struct m0_audio_device *adev)
     struct config_parse_state s;
     FILE *f;
     XML_Parser p;
-    char property[PROPERTY_VALUE_MAX];
     char file[80];
     int ret = 0;
     bool eof = false;
     int len;
 
-    property_get("ro.product.device", property, "tiny_hw");
-    snprintf(file, sizeof(file), "/system/etc/sound/%s", property);
+    snprintf(file, sizeof(file), "/system/etc/sound/%s", "n801x");
 
     ALOGV("Reading configuration from %s\n", file);
     f = fopen(file, "r");
