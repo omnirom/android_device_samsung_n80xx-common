@@ -51,10 +51,11 @@ PRODUCT_COPY_FILES += \
 
 # Packages
 PRODUCT_PACKAGES += \
-    camera.exynos4 \
+    camera.smdk4x12 \
     libsecril-client \
     GalaxyNoteTabSettings \
-    TVOutDummy
+    TVOutDummy \
+    libhwjpeg
 
 #Charger
 PRODUCT_PACKAGES += \
