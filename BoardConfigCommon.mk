@@ -21,17 +21,11 @@ include device/samsung/smdk4412-common/BoardCommonConfig.mk
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/n80xx-common/include
 
 # Exynos4x12 Tablet
-BOARD_EXYNOS4X12_TABLET := true
+COMMON_GLOBAL_CFLAGS += -DEXYNOS4X12_TABLET
 
 # RIL
 BOARD_PROVIDES_LIBRIL := true
 BOARD_MODEM_TYPE := xmm6262
-
-# Camera
-BOARD_USES_PROPRIETARY_LIBCAMERA := true
-
-# Needed for camera blob to work after https://gerrit.omnirom.org/#/c/3005
-COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 
 # Filesystem
 BOARD_NAND_PAGE_SIZE := 2048
