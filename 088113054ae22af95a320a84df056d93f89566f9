@@ -16,6 +16,23 @@
       "revId": "088113054ae22af95a320a84df056d93f89566f9",
       "serverId": "56841c99-7c94-43d4-bf0b-cb4707e66d55",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b77b57d_96a5219e",
+        "filename": "camera/exynos_camera.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1000183
+      },
+      "writtenOn": "2014-03-02T06:00:12Z",
+      "side": 1,
+      "message": "This did not actually remove the 1080p option like I hoped.",
+      "revId": "088113054ae22af95a320a84df056d93f89566f9",
+      "serverId": "56841c99-7c94-43d4-bf0b-cb4707e66d55",
+      "unresolved": false
     }
   ]
 }
