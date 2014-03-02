@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b77b57d_d632395c",
+        "filename": "camera/include/linux/fimc.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1000711
+      },
+      "writtenOn": "2014-03-02T11:01:51Z",
+      "side": 1,
+      "message": "Should we remove the next two lines ? We don\u0027t have full hd recording",
+      "revId": "e384d016dcce2077735bee84072cfa836d33ef0d",
+      "serverId": "56841c99-7c94-43d4-bf0b-cb4707e66d55",
+      "unresolved": false
+    }
+  ]
+}
