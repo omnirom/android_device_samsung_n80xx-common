@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
--include device/samsung/smdk4412-common/common.mk
+include device/samsung/smdk4412-common/common.mk
 DEVICE_PACKAGE_OVERLAYS += device/samsung/n80xx-common/overlay-common
 
 PRODUCT_AAPT_CONFIG := xlarge mdpi hdpi
