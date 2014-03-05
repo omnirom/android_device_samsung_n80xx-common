@@ -16,7 +16,7 @@
 
 # This variable is set first, so it can be overridden
 # by BoardConfigVendor.mk
--include device/samsung/smdk4412-common/BoardCommonConfig.mk
+include device/samsung/smdk4412-common/BoardCommonConfig.mk
 
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/n80xx-common/include
 
@@ -45,7 +45,7 @@ TARGET_USERIMAGES_USE_EXT4 := true
 
 # Recovery
 # inherit from the proprietary version
--include vendor/samsung/n80xx-common/BoardConfigVendor.mk
+include vendor/samsung/n80xx/BoardConfigVendor.mk
 
 # TWRP
 
@@ -58,13 +58,6 @@ TARGET_RECOVERY_INITRC := device/samsung/n80xx-common/recovery/init.rc
 
 # TWRP specific build flags
 DEVICE_RESOLUTION := 1280x800
-TW_INTERNAL_STORAGE_PATH := "/data/media"
-TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
-TW_EXTERNAL_STORAGE_PATH := "/external_sdcard"
-TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sdcard"
-RECOVERY_SDCARD_ON_DATA := true
-BOARD_HAS_NO_REAL_SDCARD := true
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 TW_NO_USB_STORAGE := true
-TWRP_EVENT_LOGGING := true
+# TWRP_EVENT_LOGGING := true
 TW_IGNORE_MAJOR_AXIS_0 := true
