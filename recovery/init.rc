@@ -2,8 +2,8 @@ on early-init
     start ueventd
 
 on init
-    export PATH /sbin
-    export LD_LIBRARY_PATH /sbin
+    export PATH /sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin
+    export LD_LIBRARY_PATH /vendor/lib:/system/lib
     export ANDROID_ROOT /system
     export ANDROID_DATA /data
     export EXTERNAL_STORAGE /sdcard
