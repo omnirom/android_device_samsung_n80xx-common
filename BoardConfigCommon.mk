@@ -16,7 +16,7 @@
 
 # This variable is set first, so it can be overridden
 # by BoardConfigVendor.mk
--include device/samsung/smdk4412-common/BoardCommonConfig.mk
+include device/samsung/smdk4412-common/BoardCommonConfig.mk
 
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/n80xx-common/include
 
@@ -42,10 +42,6 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1468006400
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 12821987328
 BOARD_FLASH_BLOCK_SIZE := 2048
 TARGET_USERIMAGES_USE_EXT4 := true
-
-# Recovery
-# inherit from the proprietary version
--include vendor/samsung/n80xx-common/BoardConfigVendor.mk
 
 # TWRP
 
