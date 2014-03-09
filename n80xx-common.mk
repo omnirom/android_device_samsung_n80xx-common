@@ -14,7 +14,6 @@
 # limitations under the License.
 #
 
--include device/samsung/smdk4412-common/common.mk
 DEVICE_PACKAGE_OVERLAYS += device/samsung/n80xx-common/overlay-common
 
 PRODUCT_AAPT_CONFIG := xlarge mdpi hdpi
@@ -58,6 +57,8 @@ PRODUCT_COPY_FILES += \
 # Set product characteristic to tablet, needed for some ui elements
 PRODUCT_CHARACTERISTICS := tablet
 
+$(call inherit-product, device/samsung/smdk4412-common/common.mk)
+
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
 
-$(call inherit-product-if-exists, vendor/samsung/n80xx/n80xx-vendor.mk)
+$(call inherit-product, vendor/samsung/n80xx/n80xx-vendor.mk)
