@@ -37,6 +37,10 @@ PRODUCT_COPY_FILES += \
     device/samsung/n80xx-common/configs/audio_policy.conf:system/etc/audio_policy.conf \
     device/samsung/n80xx-common/configs/tiny_hw.xml:system/etc/sound/n80xx
 
+# Camera
+PRODUCT_COPY_FILES += \
+    device/samsung/n80xx-common/configs/media_profiles.xml:system/etc/media_profiles.xml
+
 # Packages
 PRODUCT_PACKAGES += \
     camera.exynos4 \
