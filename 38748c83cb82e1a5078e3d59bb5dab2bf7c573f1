@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b77b57d_64d608cb",
+        "filename": "BoardConfigCommon.mk",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000183
+      },
+      "writtenOn": "2014-03-09T18:57:42Z",
+      "side": 1,
+      "message": "What does this change do? Is it intentional (removing the -)?",
+      "revId": "38748c83cb82e1a5078e3d59bb5dab2bf7c573f1",
+      "serverId": "56841c99-7c94-43d4-bf0b-cb4707e66d55",
+      "unresolved": false
+    }
+  ]
+}
