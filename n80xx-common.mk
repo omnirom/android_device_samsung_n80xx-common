@@ -14,7 +14,6 @@
 # limitations under the License.
 #
 
--include device/samsung/smdk4412-common/common.mk
 DEVICE_PACKAGE_OVERLAYS += device/samsung/n80xx-common/overlay-common
 
 PRODUCT_AAPT_CONFIG := xlarge mdpi hdpi
@@ -38,6 +37,10 @@ PRODUCT_COPY_FILES += \
     device/samsung/n80xx-common/configs/audio_policy.conf:system/etc/audio_policy.conf \
     device/samsung/n80xx-common/configs/tiny_hw.xml:system/etc/sound/n80xx
 
+# Camera
+PRODUCT_COPY_FILES += \
+    device/samsung/n80xx-common/configs/media_profiles.xml:system/etc/media_profiles.xml
+
 # Packages
 PRODUCT_PACKAGES += \
     camera.smdk4x12 \
@@ -55,12 +58,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml
 
-# Camera
-PRODUCT_COPY_FILES += \
-    configs/media_profiles.xml:system/etc/media_profiles.xml
 
 # Set product characteristic to tablet, needed for some ui elements
 PRODUCT_CHARACTERISTICS := tablet
+
+$(call inherit-product-if-exists, device/samsung/smdk4412-common/common.mk)
 
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
 
