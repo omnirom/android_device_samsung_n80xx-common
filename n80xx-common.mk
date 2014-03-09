@@ -48,6 +48,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(N80XX_COMMON)/configs/media_codecs.xml:system/etc/media_codecs.xml
 
+# Camera
+PRODUCT_COPY_FILES += \
+    device/samsung/n80xx-common/configs/media_profiles.xml:system/etc/media_profiles.xml
+
 # Packages
 PRODUCT_PACKAGES += \
     camera.exynos4 \
