@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package com.cyanogenmod.settings.device;
+package org.omnirom.device;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -28,12 +29,15 @@ import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.util.Log;
 
-import com.cyanogenmod.settings.device.R;
+import org.omnirom.device.R;
 
 public class RadioFragmentActivity extends PreferenceFragment {
 
     private static final String PREF_ENABLED = "1";
-    private static final String TAG = "GalaxyS2Parts_General";
+    private static final String TAG = "DeviceSettings_Radio";
+
+    private static boolean sHspa;
+    private Hspa mHspa;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +46,11 @@ public class RadioFragmentActivity extends PreferenceFragment {
         addPreferencesFromResource(R.xml.radio_preferences);
 
         PreferenceScreen prefSet = getPreferenceScreen();
+        Resources res = getResources();
+        sHspa = res.getBoolean(R.bool.has_hspa);
 
+        mHspa = (Hspa) findPreference(DeviceSettings.KEY_HSPA);
+        mHspa.setEnabled(sHspa);
     }
 
     @Override

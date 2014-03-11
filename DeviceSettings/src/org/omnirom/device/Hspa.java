@@ -14,32 +14,34 @@
  * limitations under the License.
  */
 
-package com.cyanogenmod.settings.device;
+package org.omnirom.device;
 
-import java.io.IOException;
 import android.content.Context;
-import android.util.AttributeSet;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.Preference;
+import android.util.AttributeSet;
 import android.preference.ListPreference;
+import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
 
-public class VibratorIntensity extends ListPreference implements OnPreferenceChangeListener {
+public class Hspa extends ListPreference implements OnPreferenceChangeListener {
 
-    public VibratorIntensity(Context context, AttributeSet attrs) {
+    private static final String FILE = "/system/app/SamsungServiceMode.apk";
+    private Context mCtx;
+
+    public Hspa(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.setOnPreferenceChangeListener(this);
+        mCtx = context;
     }
-
-    private static final String FILE = "/sys/vibrator/pwm_val";
 
     public static boolean isSupported() {
         return Utils.fileExists(FILE);
     }
 
     /**
-     * Restore vibrator intensity setting from SharedPreferences. (Write to kernel.)
+     * Restore hspa setting from SharedPreferences. (Write to kernel.)
      * @param context       The context to read the SharedPreferences from
      */
     public static void restore(Context context) {
@@ -48,12 +50,18 @@ public class VibratorIntensity extends ListPreference implements OnPreferenceCha
         }
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Utils.writeValue(FILE, sharedPrefs.getString(DeviceSettings.KEY_VIBRATOR_INTENSITY, "50"));
+        sendIntent(context, sharedPrefs.getString(DeviceSettings.KEY_HSPA, "23"));
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        Utils.writeValue(FILE, (String) newValue);
+        sendIntent(mCtx, (String) newValue);
         return true;
     }
 
+    private static void sendIntent(Context context, String value) {
+        Intent i = new Intent("com.omnirom.SamsungServiceMode.EXECUTE");
+        i.putExtra("sub_type", 20); // HSPA Setting
+        i.putExtra("data", value);
+        context.sendBroadcast(i);
+    }
 }
