@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.cyanogenmod.settings.device;
+package org.omnirom.device;
 
 import android.content.Context;
 
@@ -25,30 +25,32 @@ import android.preference.ListPreference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
 
-public class mDNIeScenario extends ListPreference implements OnPreferenceChangeListener {
+public class mDNIeMode extends ListPreference implements OnPreferenceChangeListener {
 
-    public mDNIeScenario(Context context, AttributeSet attrs) {
-        super(context,attrs);
+    private static String FILE = null;
+
+    public mDNIeMode(Context context, AttributeSet attrs) {
+        super(context, attrs);
         this.setOnPreferenceChangeListener(this);
+        FILE = context.getResources().getString(R.string.mdnie_mode_sysfs_file);
     }
 
-    private static final String FILE = "/sys/class/mdnie/mdnie/scenario";
-
-    public static boolean isSupported() {
-        return Utils.fileExists(FILE);
+    public static boolean isSupported(String filePath) {
+        return Utils.fileExists(filePath);
     }
 
     /**
-     * Restore mdnie "camera" setting from SharedPreferences. (Write to kernel.)
+     * Restore mdnie user mode setting from SharedPreferences. (Write to kernel.)
      * @param context       The context to read the SharedPreferences from
      */
     public static void restore(Context context) {
-        if (!isSupported()) {
+        FILE = context.getResources().getString(R.string.mdnie_mode_sysfs_file);
+        if (!isSupported(FILE)) {
             return;
         }
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Utils.writeValue(FILE, sharedPrefs.getString(DeviceSettings.KEY_MDNIE_SCENARIO, "0"));
+        Utils.writeValue(FILE, sharedPrefs.getString(DeviceSettings.KEY_MDNIE_MODE, "0"));
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {

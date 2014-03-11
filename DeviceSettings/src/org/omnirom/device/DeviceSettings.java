@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.cyanogenmod.settings.device;
+package org.omnirom.device;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -28,19 +28,21 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 
-import com.cyanogenmod.settings.device.R;
+import org.omnirom.device.R;
 
 import java.util.ArrayList;
 
 public class DeviceSettings extends FragmentActivity {
 
-    public static final String SHARED_PREFERENCES_BASENAME = "com.cyanogenmod.settings.device";
-    public static final String ACTION_UPDATE_PREFERENCES = "com.cyanogenmod.settings.device.UPDATE";
-    public static final String KEY_HSPA = "hspa";
-    public static final String KEY_VIBRATOR_INTENSITY = "vibrator_intensity";
+    public static final String SHARED_PREFERENCES_BASENAME = "com.omnirom.settings.device";
+    public static final String ACTION_UPDATE_PREFERENCES = "com.omnirom.settings.device.UPDATE";
+    public static final String KEY_CABC = "cabc";
     public static final String KEY_MDNIE_SCENARIO = "mdnie_scenario";
     public static final String KEY_MDNIE_MODE = "mdnie_mode";
-    public static final String KEY_MDNIE_NEGATIVE = "mdnie_negative";
+    public static final String KEY_HSPA = "hspa";
+    public static final String KEY_USE_DOCK_AUDIO = "dock_audio";
+    public static final String KEY_CATEGORY_SPEN = "category_spen";
+    public static final String KEY_SPEN_POWER_SAVING_MODE = "spen_power_saving";
 
     ViewPager mViewPager;
     TabsAdapter mTabsAdapter;
@@ -60,13 +62,15 @@ public class DeviceSettings extends FragmentActivity {
         bar.setDisplayHomeAsUpEnabled(true);
 
         mTabsAdapter = new TabsAdapter(this, mViewPager);
-        mTabsAdapter.addTab(bar.newTab().setText(R.string.category_radio_title),
+        if(Hspa.isSupported(getApplicationContext()))
+            mTabsAdapter.addTab(bar.newTab().setText(R.string.category_radio_title),
                 RadioFragmentActivity.class, null);
         mTabsAdapter.addTab(bar.newTab().setText(R.string.category_screen_title),
                 ScreenFragmentActivity.class, null);
-        mTabsAdapter.addTab(bar.newTab().setText(R.string.category_haptic_title),
-                HapticFragmentActivity.class, null);
-
+       /* mTabsAdapter.addTab(bar.newTab().setText(R.string.category_haptic_title),
+                HapticFragmentActivity.class, null); */
+        mTabsAdapter.addTab(bar.newTab().setText(R.string.category_audio_title),
+                AudioFragmentActivity.class, null);
 
         if (savedInstanceState != null) {
             bar.setSelectedNavigationItem(savedInstanceState.getInt("tab", 0));
