@@ -14,22 +14,8 @@
      limitations under the License.
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string-array name="vibrator_intensity_entries">
-        <item>0%</item>
-        <item>25%</item>
-        <item>50% (standaard)</item>
-        <item>75%</item>
-        <item>100%</item>
-    </string-array>
-
-    <string-array name="hspa_entries">
-        <item>Alleen UMTS</item>
-        <item>Alleen HSDPA</item>
-        <item>HSDPA &amp; HSUPA</item>
-    </string-array>
-
     <string-array name="mdnie_scenario_entries">
-        <item>CyanogenMod (standaard)</item>
+        <item>OmniROM (standaard)</item>
         <item>Uiterlijk</item>
         <item>Video</item>
         <item>Video (warm)</item>
@@ -50,5 +36,26 @@
     <string-array name="mdnie_negative_entries">
         <item>Normaal</item>
         <item>Omgedraaid</item>
+    </string-array>
+
+    <string-array name="touchkey_timeout_entries">
+        <item>Nooit</item>
+        <item>1 seconde</item>
+        <item>2 seconden</item>
+        <item>3 seconden (standaard)</item>
+        <item>4 seconden</item>
+        <item>5 seconden</item>
+        <item>6 seconden</item>
+    </string-array>
+
+    <string-array name="led_fade_entries">
+        <item>Knipperen</item>
+        <item>Vervagen</item>
+    </string-array>
+
+    <string-array name="hspa_entries">
+        <item>Alleen UMTS</item>
+        <item>Alleen HSDPA</item>
+        <item>HSDPA &amp; HSUPA</item>
     </string-array>
 </resources>
