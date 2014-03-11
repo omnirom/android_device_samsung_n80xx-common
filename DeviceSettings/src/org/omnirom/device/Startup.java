@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.cyanogenmod.settings.device;
+package org.omnirom.device;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -24,12 +24,18 @@ public class Startup extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, final Intent bootintent) {
+        AudioFragmentActivity.restore(context);
+        CABC.restore(context);
         HapticFragmentActivity.restore(context);
         Hspa.restore(context);
-        RadioFragmentActivity.restore(context);
+        LedFade.restore(context);
         mDNIeScenario.restore(context);
         mDNIeMode.restore(context);
-        mDNIeNegative.restore(context);
-        VibratorIntensity.restore(context);
+        // mDNIeNegative.restore(context);
+        RadioFragmentActivity.restore(context);
+        ScreenFragmentActivity.restore(context);
+        SPenPowerSavingMode.restore(context);
+        TouchkeyTimeout.restore(context);
+        VibratorTuningPreference.restore(context);
     }
 }

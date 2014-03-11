@@ -43,7 +43,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     camera.exynos4 \
     libsecril-client \
-    GalaxyNoteTabSettings \
     TVOutDummy
 
 # IR packages
@@ -60,6 +59,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_CHARACTERISTICS := tablet
 
 $(call inherit-product, device/samsung/smdk4412-common/common.mk)
+
+PRODUCT_PACKAGES += \
+    GalaxyNoteTabSettings
 
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
 
