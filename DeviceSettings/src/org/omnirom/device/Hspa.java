@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.cyanogenmod.settings.device;
+package org.omnirom.device;
 
 import android.content.Context;
 import android.content.Intent;
@@ -59,7 +59,7 @@ public class Hspa extends ListPreference implements OnPreferenceChangeListener {
     }
 
     private static void sendIntent(Context context, String value) {
-        Intent i = new Intent("com.cyanogenmod.SamsungServiceMode.EXECUTE");
+        Intent i = new Intent("com.omnirom.SamsungServiceMode.EXECUTE");
         i.putExtra("sub_type", 20); // HSPA Setting
         i.putExtra("data", value);
         context.sendBroadcast(i);
