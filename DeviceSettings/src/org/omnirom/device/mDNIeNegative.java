@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.cyanogenmod.settings.device;
+package org.omnirom.device;
 
 import java.io.IOException;
 import android.content.Context;
@@ -25,30 +25,32 @@ import android.preference.ListPreference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
 
-public class VibratorIntensity extends ListPreference implements OnPreferenceChangeListener {
+public class mDNIeNegative extends ListPreference implements OnPreferenceChangeListener {
 
-    public VibratorIntensity(Context context, AttributeSet attrs) {
+    private static String FILE = null;
+
+    public mDNIeNegative(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.setOnPreferenceChangeListener(this);
+        FILE = context.getResources().getString(R.string.mdnie_negative_sysfs_file);
     }
 
-    private static final String FILE = "/sys/vibrator/pwm_val";
-
-    public static boolean isSupported() {
-        return Utils.fileExists(FILE);
+    public static boolean isSupported(String filePath) {
+        return Utils.fileExists(filePath);
     }
 
     /**
-     * Restore vibrator intensity setting from SharedPreferences. (Write to kernel.)
+     * Restore mdnie user mode setting from SharedPreferences. (Write to kernel.)
      * @param context       The context to read the SharedPreferences from
      */
     public static void restore(Context context) {
-        if (!isSupported()) {
+        FILE = context.getResources().getString(R.string.mdnie_negative_sysfs_file);
+        if (!isSupported(FILE)) {
             return;
         }
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Utils.writeValue(FILE, sharedPrefs.getString(DeviceSettings.KEY_VIBRATOR_INTENSITY, "50"));
+        Utils.writeValue(FILE, sharedPrefs.getString(DeviceSettings.KEY_MDNIE_NEGATIVE, "0"));
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
