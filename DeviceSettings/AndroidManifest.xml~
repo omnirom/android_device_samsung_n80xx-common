@@ -10,7 +10,7 @@
             android:label="@string/app_name"
             android:icon="@drawable/ic_launcher_devicesettings" >
         <activity
-            android:name=".DeviceSettings"
+            android:name=".NoteDeviceSettings"
             android:launchMode="singleTask"
             android:exported="true"
             android:label="@string/app_name" >

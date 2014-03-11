@@ -40,10 +40,10 @@
                 android:defaultValue="0" /> -->
     </PreferenceCategory>
 
-    <!-- LED 
+    <!-- LED -->
     <PreferenceCategory
             android:title="@string/led_subcat_title">
-        
+        <!-- LED fading mode -->
         <org.omnirom.device.LedFade
                 android:key="led_fade"
                 android:title="@string/led_fade_title_head"
@@ -51,7 +51,7 @@
                 android:entries="@array/led_fade_entries"
                 android:entryValues="@array/led_fade_entries_values"
                 android:defaultValue="1" />
-    </PreferenceCategory> -->
+    </PreferenceCategory>
 
     <!-- S-Pen -->
     <PreferenceCategory
@@ -64,9 +64,10 @@
                 android:summary="@string/spen_power_save_summary_head" />
     </PreferenceCategory>
 
-    <!-- Touchkeys 
+    <!-- Touchkeys -->
     <PreferenceCategory
             android:title="@string/touchkey_subcat_title">
+        <!-- Touchkey backlight -->
         <CheckBoxPreference
                 android:key="touchkey_light"
                 android:title="@string/touchkey_light_title_head"
@@ -80,9 +81,9 @@
                 android:entries="@array/touchkey_timeout_entries"
                 android:entryValues="@array/touchkey_timeout_entries_values"
                 android:defaultValue="3" />
-    </PreferenceCategory> -->
+    </PreferenceCategory>
 
-    <!-- Touchwake 
+    <!-- Touchwake -->
     <PreferenceCategory android:key="touchwake"
             android:title="@string/touchwake_title">
         <SwitchPreference
@@ -102,6 +103,6 @@
                 android:persistent="true"
                 android:dependency="touchwake_enable"
                 android:defaultValue="5" />
-    </PreferenceCategory> -->
+    </PreferenceCategory>
 
 </PreferenceScreen>

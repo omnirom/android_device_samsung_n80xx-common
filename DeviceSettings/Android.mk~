@@ -9,7 +9,7 @@ LOCAL_SRC_FILES := $(call all-java-files-under, src)
 
 LOCAL_PACKAGE_NAME := NoteDeviceSettings
 
-OVERRIDES_PACKAGES := DeviceSettings
+LOCAL_OVERRIDES_PACKAGES := DeviceSettings
 
 LOCAL_CERTIFICATE := platform
 
