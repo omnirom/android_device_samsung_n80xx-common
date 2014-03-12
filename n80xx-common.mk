@@ -14,7 +14,9 @@
 # limitations under the License.
 #
 
-DEVICE_PACKAGE_OVERLAYS += device/samsung/n80xx-common/overlay-common
+N80XX_COMMON := device/samsung/n80xx-common
+
+PRODUCT_PACKAGE_OVERLAYS := $(N80XX_COMMON)/overlay-common
 
 PRODUCT_AAPT_CONFIG := xlarge mdpi hdpi
 PRODUCT_AAPT_PREF_CONFIG := mdpi
@@ -24,18 +26,18 @@ TARGET_SCREEN_WIDTH := 1280
 
 # Init files
 PRODUCT_COPY_FILES += \
-    device/samsung/n80xx-common/ueventd.smdk4x12.rc:root/ueventd.smdk4x12.rc \
-    device/samsung/n80xx-common/ueventd.smdk4x12.rc:recovery/root/ueventd.smdk4x12.rc \
-    device/samsung/n80xx-common/fstab.smdk4x12:root/fstab.smdk4x12
+    $(N80XX_COMMON)/ueventd.smdk4x12.rc:root/ueventd.smdk4x12.rc \
+    $(N80XX_COMMON)/ueventd.smdk4x12.rc:recovery/root/ueventd.smdk4x12.rc \
+    $(N80XX_COMMON)/fstab.smdk4x12:root/fstab.smdk4x12
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/samsung/n80xx-common/fstab.smdk4x12
+TARGET_RECOVERY_FSTAB := $(N80XX_COMMON)/fstab.smdk4x12
 RECOVERY_FSTAB_VERSION := 2
 
 # Audio
 PRODUCT_COPY_FILES += \
-    device/samsung/n80xx-common/configs/audio_policy.conf:system/etc/audio_policy.conf \
-    device/samsung/n80xx-common/configs/tiny_hw.xml:system/etc/sound/n80xx
+    $(N80XX_COMMON)/configs/audio_policy.conf:system/etc/audio_policy.conf \
+    $(N80XX_COMMON)/configs/tiny_hw.xml:system/etc/sound/n80xx
 
 # Packages
 PRODUCT_PACKAGES += \
