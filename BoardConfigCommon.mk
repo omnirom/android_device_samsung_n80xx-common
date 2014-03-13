@@ -52,6 +52,18 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 #           both init scripts can be found in the recovery folder
 # TARGET_RECOVERY_INITRC := device/samsung/n80xx-common/recovery/init.rc
 
+#Charging mode
+BOARD_POWER_SUPPLY_PATH := /sys/class/power_supply
+BOARD_BATTERY_SYSFS_PATH := $(BOARD_POWER_SUPPLY_PATH)/battery
+BOARD_AC_SYSFS_PATH := $(BOARD_POWER_SUPPLY_PATH)/ac
+BOARD_USB_SYSFS_PATH := $(BOARD_POWER_SUPPLY_PATH)/usb
+BOARD_CHARGER_ENABLE_SUSPEND := false
+BOARD_CHARGER_DIM_SCREEN_BRIGHTNESS := true
+BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../../device/samsung/n80xx-common/recovery/recovery_keys.c
+#Use default graphics.c overriding the variable in BoardCommonConfig of smdk4412-common
+BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/n80xx-common/recovery/graphics.c
+
+
 # TWRP specific build flags
 DEVICE_RESOLUTION := 1280x800
 TW_INTERNAL_STORAGE_PATH := "/data/media"
