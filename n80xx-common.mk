@@ -26,12 +26,13 @@ TARGET_SCREEN_WIDTH := 1280
 
 # Init files
 PRODUCT_COPY_FILES += \
-    $(N80XX_COMMON)/ueventd.smdk4x12.rc:root/ueventd.smdk4x12.rc \
-    $(N80XX_COMMON)/ueventd.smdk4x12.rc:recovery/root/ueventd.smdk4x12.rc \
-    $(N80XX_COMMON)/fstab.smdk4x12:root/fstab.smdk4x12
-
+    $(N80XX_COMMON)/rootdir/ueventd.smdk4x12.rc:root/ueventd.smdk4x12.rc \
+    $(N80XX_COMMON)/rootdir/ueventd.smdk4x12.rc:recovery/root/ueventd.smdk4x12.rc \
+    $(N80XX_COMMON)/rootdir/fstab.smdk4x12:root/fstab.smdk4x12 \
+    $(N80XX_COMMON)/rootdir/lpm.rc:root/lpm.rc
+    
 # Recovery
-TARGET_RECOVERY_FSTAB := $(N80XX_COMMON)/fstab.smdk4x12
+TARGET_RECOVERY_FSTAB := $(N80XX_COMMON)/rootdir/fstab.smdk4x12
 RECOVERY_FSTAB_VERSION := 2
 
 # Audio
@@ -45,6 +46,11 @@ PRODUCT_PACKAGES += \
     libsecril-client \
     GalaxyNoteTabSettings \
     TVOutDummy
+
+#Charger
+PRODUCT_PACKAGES += \
+	note_charger \
+	note_charger_res_images
 
 # IR packages
 PRODUCT_PACKAGES += \
