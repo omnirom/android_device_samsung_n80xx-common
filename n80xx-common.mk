@@ -52,6 +52,10 @@ PRODUCT_PACKAGES += \
 	note_charger \
 	note_charger_res_images
 
+# dalvik: /cache is big enough to dexopt /system apps to it
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.dexopt-data-only=0
+
 # IR packages
 PRODUCT_PACKAGES += \
     consumerir.smdk4x12
