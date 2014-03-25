@@ -1,5 +1,6 @@
 #
 # Copyright (C) 2012 The CyanogenMod Project
+# Copyright (C) 2014 OmniROM Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,6 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+# Inherit common Omni configurations
+$(call inherit-product, vendor/omni/config/common_tablet.mk)
 
 N80XX_COMMON := device/samsung/n80xx-common
 
@@ -49,8 +53,8 @@ PRODUCT_PACKAGES += \
 
 #Charger
 PRODUCT_PACKAGES += \
-	note_charger \
-	note_charger_res_images
+    note_charger \
+    note_charger_res_images
 
 # IR packages
 PRODUCT_PACKAGES += \
@@ -61,9 +65,6 @@ PRODUCT_COPY_FILES += \
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml
-
-# Set product characteristic to tablet, needed for some ui elements
-PRODUCT_CHARACTERISTICS := tablet
 
 $(call inherit-product, device/samsung/smdk4412-common/common.mk)
 
