@@ -1,0 +1,5 @@
+#!/system/bin/sh
+# mm_alpha kernel settings
+
+busybox echo "1400000" > /sys/power/cpufreq_max_limit
+busybox echo "200000" > /sys/power/cpufreq_min_limit

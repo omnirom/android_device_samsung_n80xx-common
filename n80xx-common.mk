@@ -35,6 +35,10 @@ PRODUCT_COPY_FILES += \
     $(N80XX_COMMON)/rootdir/fstab.smdk4x12:root/fstab.smdk4x12 \
     $(N80XX_COMMON)/rootdir/lpm.rc:root/lpm.rc
 
+#CpuSettings
+PRODUCT_COPY_FILES += \
+    $(N80XX_COMMON)/configs/99cpu:system/etc/init.d/99cpu
+
 # Recovery
 TARGET_RECOVERY_FSTAB := $(N80XX_COMMON)/rootdir/fstab.smdk4x12
 RECOVERY_FSTAB_VERSION := 2
