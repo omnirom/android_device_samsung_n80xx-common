@@ -44,6 +44,10 @@ PRODUCT_COPY_FILES += \
     $(N80XX_COMMON)/configs/audio_policy.conf:system/etc/audio_policy.conf \
     $(N80XX_COMMON)/configs/tiny_hw.xml:system/etc/sound/n80xx
 
+# audio submix
+PRODUCT_PACKAGES += \
+    audio.r_submix.default
+
 # Packages
 PRODUCT_PACKAGES += \
     camera.exynos4 \
