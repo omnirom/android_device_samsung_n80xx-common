@@ -397,7 +397,7 @@ static int request_suspend(bool enable)
 {
   int fd;
   if (enable){
-    gr_fb_blank(true);
+    //gr_fb_blank(true);
 #ifdef CHARGER_ENABLE_SUSPEND
     return autosuspend_enable();
 #elif defined DIM_SCREEN && defined BRIGHTNESS_PATH
@@ -407,7 +407,7 @@ static int request_suspend(bool enable)
     return 0;
 #endif
   }
-  gr_fb_blank(false);
+  //gr_fb_blank(false);
 #ifdef CHARGER_ENABLE_SUSPEND
   return autosuspend_disable();
 #elif defined DIM_SCREEN && defined BRIGHTNESS_PATH
