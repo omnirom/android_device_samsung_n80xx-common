@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2012, The CyanogenMod Project
- *
+ * Copyright (C) 2014, The OmniRom Project
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -34,6 +35,7 @@
 #include <hardware/camera.h>
 #include <camera/Camera.h>
 #include <camera/CameraParameters.h>
+#include "CameraParametersExtra.h"
 
 static android::Mutex gCameraWrapperLock;
 static camera_module_t *gVendorModule = 0;
@@ -95,14 +97,14 @@ const static char * iso_values[] = {"auto,ISO100,ISO200,ISO400,ISO800","auto"};
 
 static char * camera_fixup_getparams(int id, const char * settings)
 {
-    android::CameraParameters params;
+    android::CameraParametersExtra params;
     params.unflatten(android::String8(settings));
 
     // fix params here
 #ifdef HAVE_ISO
-    params.set(android::CameraParameters::KEY_SUPPORTED_ISO_MODES, iso_values[id]);
+    params.set(android::CameraParametersExtra::KEY_SUPPORTED_ISO_MODES, iso_values[id]);
 #endif
-    params.set(android::CameraParameters::KEY_AUTO_EXPOSURE_LOCK, "false");
+    params.set(android::CameraParametersExtra::KEY_AUTO_EXPOSURE_LOCK, "false");
 
     android::String8 strParams = params.flatten();
     char *ret = strdup(strParams.string());
@@ -113,28 +115,28 @@ static char * camera_fixup_getparams(int id, const char * settings)
 
 char * camera_fixup_setparams(int id, const char * settings)
 {
-    android::CameraParameters params;
+    android::CameraParametersExtra params;
     params.unflatten(android::String8(settings));
 
     // fix params here
 #ifdef HAVE_ISO
     if(params.get("iso")) {
-        const char* isoMode = params.get(android::CameraParameters::KEY_ISO_MODE);
+        const char* isoMode = params.get(android::CameraParametersExtra::KEY_ISO_MODE);
         if(strcmp(isoMode, "ISO100") == 0)
-            params.set(android::CameraParameters::KEY_ISO_MODE, "100");
+            params.set(android::CameraParametersExtra::KEY_ISO_MODE, "100");
         else if(strcmp(isoMode, "ISO200") == 0)
-            params.set(android::CameraParameters::KEY_ISO_MODE, "200");
+            params.set(android::CameraParametersExtra::KEY_ISO_MODE, "200");
         else if(strcmp(isoMode, "ISO400") == 0)
-            params.set(android::CameraParameters::KEY_ISO_MODE, "400");
+            params.set(android::CameraParametersExtra::KEY_ISO_MODE, "400");
         else if(strcmp(isoMode, "ISO800") == 0)
-            params.set(android::CameraParameters::KEY_ISO_MODE, "800");
+            params.set(android::CameraParametersExtra::KEY_ISO_MODE, "800");
     }
 #endif
     //Workaround for crash when touch to focus is used with flash on.
-    params.set(android::CameraParameters::KEY_AUTO_EXPOSURE_LOCK, "false");
+    params.set(android::CameraParametersExtra::KEY_AUTO_EXPOSURE_LOCK, "false");
 
 #ifdef CAMERA_WITH_CITYID_PARAM
-    params.set(android::CameraParameters::KEY_CITYID, 0);
+    params.set(android::CameraParametersExtra::KEY_CITYID, 0);
 #endif
 
     android::String8 strParams = params.flatten();
